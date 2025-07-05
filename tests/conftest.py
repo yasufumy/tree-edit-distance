@@ -4,11 +4,11 @@ from pathlib import Path
 import pytest
 
 from tests.helper import create_tree
-from tree_edit_distance.core import TreeNode
+from tree_edit_distance.core import Tree
 
 
 @pytest.fixture
-def test_cases() -> list[tuple[TreeNode, TreeNode, int]]:
+def test_cases() -> list[tuple[Tree[str], Tree[str], int]]:
     file = Path(__file__).parent / "correctness_test_cases.json"
     with open(file) as f:
         data = json.load(f)

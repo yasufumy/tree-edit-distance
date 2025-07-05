@@ -1,8 +1,8 @@
-from tree_edit_distance.core import TreeNode
+from tree_edit_distance.core import Tree
 
 
-def create_tree(text: str) -> TreeNode:
-    tree_stack: list[tuple[TreeNode, int]] = []
+def create_tree(text: str) -> Tree[str]:
+    tree_stack: list[tuple[Tree[str], int]] = []
     stack = []
     for letter in text:
         if letter == "{":
@@ -14,7 +14,7 @@ def create_tree(text: str) -> TreeNode:
                 child, _ = tree_stack.pop()
                 children.append(child)
             children.reverse()
-            tree_stack.append((TreeNode(label, children), len(stack)))
+            tree_stack.append((Tree(label, children), len(stack)))
         else:
             stack[-1] += letter
     return tree_stack[0][0]
